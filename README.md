@@ -1,6 +1,6 @@
 # wait_db
 
-The main purpose of this project is to be able to wait for a database (for now, MySQL) running inside a container to be ready for connections after startup. All approaches I found rely on a script that tries over and over to connect to the database, or try to establish a TCP connection with the container. My aproach in this script is to rely on the retrieved log from the container.
+The main purpose of this project is to be able to wait for a database (for now, MySQL) running inside a container to be ready for connections after startup. All approaches I found rely on a script that tries over and over to connect to the database, or try to establish a TCP connection with the container. My approach in this script is to rely on the retrieved log from the container.
 
 ## How it works
 
@@ -14,10 +14,10 @@ The script can be found on [wait_db.sh](https://github.com/marcelopbarros/waitdb
 wait_db [CONTAINER TYPE] [OPTIONS]
 ```
 
-It can be way easier to see the exemples below.
+It can be way easier to see the examples below.
 
 
-### Exemaple 01: Using with Docker Compose
+### Example 01: Using with Docker Compose
 
 ```bash
 SERVICE_NAME="mysql" && \
@@ -25,7 +25,7 @@ docker-compose up -d $SERVICE_NAME && \
 ./wait_db.sh docker-compose --no-color $SERVICE_NAME
 ```
 
-### Exemple 02: Using with Docker
+### Example 02: Using with Docker
 
 ```bash
 CONTAINER_NAME="wait-db-test" && \
@@ -46,7 +46,7 @@ A complete test can be found on the [test_wait_db.sh](https://github.com/marcelo
 
 ## Technical
 
-About the script, I'd like to register the reason I used the **double grep**. It seems like the funcion *follow* of docker (and docker-compose) does not exit *normally* when there is no new output from log. This way, the script can continue normally and, the *follow* command will finish as soon as a new entry to the console appears.
+About the script, I'd like to register the reason I used the **double grep**. It seems like the function *follow* of docker (and docker-compose) does not exit *normally* when there is no new output from log. This way, the script can continue normally and, the *follow* command will finish as soon as a new entry to the console appears.
 
 ## Contributions
 
